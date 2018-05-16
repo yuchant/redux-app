@@ -1,5 +1,5 @@
-import CardBasic from "./CardListBasic";
-import CardCTA from "./CardListCTA";
+import CardBasic from "../cards/CardListBasic";
+import CardCTA from "../cards/CardListCTA";
 
 const componentTypes = {
   Basic: CardBasic,

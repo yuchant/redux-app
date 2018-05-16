@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getComponent } from "./DynamicComponent";
+import { getComponent } from "../utils/DynamicComponent";
 
 const mapStateToProps = state => {
   return {

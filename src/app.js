@@ -9,20 +9,20 @@ import { createLogger } from "redux-logger";
 
 import reducers from "./reducers";
 
-import ToDo from "./ToDo";
-import Home from "./Home";
-import CardDetail from "./CardDetail";
-import Navbar from "./Navbar";
-import Loader from "./Loader";
-import Drawer from "./Drawer";
-import Footer from "./Footer";
-import AppFrame from "./AppFrame";
+import ToDo from "./todo/ToDo";
+import Home from "./cards/Home";
+import CardDetail from "./cards/CardDetail";
+import Navbar from "./ui/Navbar";
+import Loader from "./ui/Loader";
+import Drawer from "./ui/Drawer";
+import Footer from "./ui/Footer";
+import AppFrame from "./ui/AppFrame";
 
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { BottomNavigation, BottomNavigationItem } from "material-ui";
 
-import getData from "./dataActions";
+import getData from "./data/dataActions";
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -31,7 +31,6 @@ const muiTheme = getMuiTheme({
 });
 
 const loggerMiddleware = createLogger();
-
 const store = createStore(
   reducers,
   applyMiddleware(

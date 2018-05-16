@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import { RECEIVE_DATA, GET_DATA } from "./dataActions";
-import data from "./dataReducers";
-import todos from "./todoReducers";
-import cards from "./cardsReducers";
-import ui from "./uiReducers";
+import { RECEIVE_DATA, GET_DATA } from "./data/dataActions";
+import data from "./data/dataReducers";
+import todos from "./todo/todoReducers";
+import cards from "./cards/cardsReducers";
+import ui from "./ui/uiReducers";
 
 const log = console.log.bind(this, "[reducers.js]");
 
@@ -20,16 +20,6 @@ const combinedReducers = (state = {}, action) => {
 const rootReducer = (state, action) => {
   const initialState = data(state, action);
   return combinedReducers(initialState, action);
-
-  // can't use combineReducers because it strips all state not explicitly passed to combineReducers
-  // such as our global data population reducer (which populates both todos and cards at once.)
-  // need SOLVE.
-  const finalState = combineReducers({
-    todos,
-    cards
-  })(newState, action);
-  log("Final State: ", finalState);
-  return finalState;
 };
 
 export default rootReducer;
