@@ -1,0 +1,35 @@
+{
+  "cards": ["1", "2", "3"],
+  "cardsByID": {
+    "1": {
+      "id": "1",
+      "type": "Basic",
+      "text": "This is another basic homepage text payload",
+      "title": "Interested in interesting stuff?"
+    },
+    "2": {
+      "id": "2",
+      "type": "CTA",
+      "text": "",
+      "title": "Start Your Journey"
+    },
+    "3": {
+      "id": "3",
+      "type": "Basic",
+      "text": "This is the CTA Module",
+      "title": "One crazy trick that will surprise you!"
+    }
+  },
+  "todos": [
+    {
+      "index": 0,
+      "text": "Foobar",
+      "placeholder": "Foo"
+    },
+    {
+      "index": 1,
+      "text": "New",
+      "placeholder": "Foo"
+    }
+  ]
+}
