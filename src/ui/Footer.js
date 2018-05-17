@@ -14,6 +14,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Restore";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Paper from "@material-ui/core/Paper";
 
 const StyledFooter = styled.div`
   position: fixed;
@@ -56,20 +57,22 @@ class Footer extends Component {
   render() {
     return (
       <StyledFooter>
-        <BottomNavigation selectedIndex={this.state.selectedIndex} showLabels>
-          {navigationItems.map((item, i) => {
-            return (
-              <BottomNavigationAction
-                label={item.label}
-                onClick={() => this.select(i)}
-                style={{ textAlign: "center" }}
-                component={Link}
-                to={item.to}
-                icon={item.icon}
-              />
-            );
-          })}
-        </BottomNavigation>
+        <Paper elevation={4}>
+          <BottomNavigation selectedIndex={this.state.selectedIndex} showLabels>
+            {navigationItems.map((item, i) => {
+              return (
+                <BottomNavigationAction
+                  label={item.label}
+                  onClick={() => this.select(i)}
+                  style={{ textAlign: "center" }}
+                  component={Link}
+                  to={item.to}
+                  icon={item.icon}
+                />
+              );
+            })}
+          </BottomNavigation>
+        </Paper>
       </StyledFooter>
     );
   }

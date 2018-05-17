@@ -6,7 +6,13 @@ const overrides = {};
 const theme = createMuiTheme({
   // Use the system font instead of the default Roboto font.
   typography: {
-    fontFamily: "Montserrat, sans-serif"
+    fontFamily: "Montserrat, sans-serif",
+    display1: {
+      fontFamily: "Playfair Display"
+    },
+    display2: {
+      fontFamily: "Playfair Display"
+    }
   },
   palette: {
     primary: cyan,

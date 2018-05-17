@@ -1,27 +1,34 @@
 import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
 
-import reducers from "./reducers";
+// theme
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import theme from "./theme";
 
-import ToDo from "./todo/ToDo";
-import Home from "./cards/Home";
-import CardDetail from "./cards/CardDetail";
+// reducers
+import reducers from "./reducers";
+import getData from "./data/dataActions";
+
+// components
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+
+// ui components
 import Navbar from "./ui/Navbar";
 import Loader from "./ui/Loader";
 import Drawer from "./ui/Drawer";
 import Footer from "./ui/Footer";
 import AppFrame from "./ui/AppFrame";
-import getData from "./data/dataActions";
 
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "./theme";
+// route root components
+import ToDo from "./todo/ToDo";
+import Home from "./cards/Home";
+import Journeys from "./journeys/Journeys";
+import CardDetail from "./cards/CardDetail";
 
 const loggerMiddleware = createLogger({
   duration: true,
@@ -51,6 +58,7 @@ const ReduxApp = () => {
             <Navbar />
             <Route exact path="/" component={Home} />
             <Route exact path="/micro-steps" component={ToDo} />
+            <Route exact path="/journeys" component={Journeys} />
             <Route path="/card/:id" component={CardDetail} />
             <Footer />
           </AppFrame>

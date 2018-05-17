@@ -4,6 +4,7 @@ import data from "./data/dataReducers";
 import todos from "./todo/todoReducers";
 import cards from "./cards/cardsReducers";
 import ui from "./ui/uiReducers";
+import journeys from "./journeys/journeysReducers";
 
 const log = console.log.bind(this, "[reducers.js]");
 
@@ -13,7 +14,8 @@ const combinedReducers = (state = {}, action) => {
   return Object.assign({}, state, {
     todos: todos(state.todos, action),
     cards: cards(state.cards, action),
-    ui: ui(state.ui, action)
+    ui: ui(state.ui, action),
+    journeys: journeys(state.journeys, action)
   });
 };
 

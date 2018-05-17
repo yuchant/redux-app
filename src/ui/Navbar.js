@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import AccountIcon from "@material-ui/icons/AccountCircle";
 
 const log = console.log.bind(this, "[Navbar.js]");
 const mapDispatchToProps = dispatch => {
@@ -37,10 +38,12 @@ const styles = {
   },
   title: {
     color: "white",
-    marginLeft: "15px",
     fontSize: 20,
     letterSpacing: ".07em",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)"
   },
   button: {
     color: "white",
@@ -54,7 +57,7 @@ const Navbar = props => {
   const { classes } = props;
   return (
     <StyledAppBar>
-      <AppBar>
+      <AppBar elevation={1}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             color="inherit"
@@ -66,9 +69,9 @@ const Navbar = props => {
           <Typography variant="title" color="inherit" className={classes.title}>
             THRIVE APP
           </Typography>
-          <Button color="inherit" className={classes.button}>
-            Login
-          </Button>
+          <IconButton color="inherit" aria-label="Account">
+            <AccountIcon className={classes.menuIcon} />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </StyledAppBar>

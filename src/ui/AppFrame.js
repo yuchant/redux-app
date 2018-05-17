@@ -2,12 +2,23 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledFrame = styled.div`
-  padding-top: 50px;
+  padding-top: 60px;
   padding-bottom: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-family: "Montserrat", sans-serif;
 `;
 
+const InnerFrame = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
+
 const AppFrame = props => {
-  return <StyledFrame>{props.children}</StyledFrame>;
+  return (
+    <StyledFrame>
+      <InnerFrame>{props.children}</InnerFrame>
+    </StyledFrame>
+  );
 };
 export default AppFrame;

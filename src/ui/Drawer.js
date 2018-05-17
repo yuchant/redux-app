@@ -53,7 +53,7 @@ const MyDrawer = props => {
     <div>
       <Drawer
         docked={false}
-        classes={classes.drawer}
+        className={classes.drawer}
         open={props.open}
         onClose={() => props.onClose()}
       >

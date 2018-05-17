@@ -8,26 +8,32 @@ import ProgressBar from "./ProgressBar";
 const log = console.log.bind(this, "[ToDo.js]");
 
 const mapStateToProps = state => {
-  return { todos: state.todos.items };
+  return {
+    todos: state.todos.items
+  };
 };
 
 const StyledProgrssBar = styled.div`
   margin-bottom: 10px;
 `;
 
+const StyledTodo = styled.div`
+  margin-top: 20px;
+`;
+
 const ConnectedToDoList = props => {
   console.log("props", props);
   return (
-    <div>
+    <StyledTodo>
       <StyledProgrssBar>
         <ProgressBar />
       </StyledProgrssBar>
       {props.todos.map(todo => {
         return <ToDoItem {...todo} />;
       })}
-      <AddItem />
-    </div>
+    </StyledTodo>
   );
+  // <AddItem />
 };
 
 const ToDoList = connect(mapStateToProps)(ConnectedToDoList);

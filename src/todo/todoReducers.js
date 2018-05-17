@@ -77,6 +77,7 @@ export default (
 ) => {
   return Object.assign({}, state, {
     items: todoItemReducer(state.items, action),
-    progress: calculateProgress(state.items)
+    progress: calculateProgress(state.items),
+    completed: state.items.filter(todo => todo.complete).length
   });
 };

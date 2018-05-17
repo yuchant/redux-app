@@ -24,11 +24,56 @@
   "todos": [
     {
       "index": 0,
-      "text": "Meditate for 5 minutes"
+      "text": "Meditate for 5 minutes",
+      "description":
+        "Studies show that meditating results in increased mood, happiness, and reduces anxiety.",
+      "category": "Purpose"
     },
     {
       "index": 1,
-      "text": "Go on a nice walk"
+      "text": "Go on a nice walk",
+      "description":
+        "Slow down, take a deep breath, and go on a walk. Notice your surroundings, and take a moment to remove yourself from your usual routine.",
+      "category": "Wellness"
+    },
+    {
+      "index": 2,
+      "text": "Feel gratitude for somebody you love",
+      "description":
+        "Sometimes we're so caught up in our own lives that we don't think of others. Take a moment to appreciate your closest friends, family, pets, or anything else.",
+      "category": "Wellness"
     }
-  ]
+  ],
+  "journeys": {
+    "topics": [
+      {
+        "name": "Well-Being",
+        "selected": false
+      },
+      {
+        "name": "Wisdom",
+        "selected": false
+      },
+      {
+        "name": "Wonder",
+        "selected": false
+      },
+      {
+        "name": "Purpose",
+        "selected": false
+      },
+      {
+        "name": "Brain Health",
+        "selected": false
+      },
+      {
+        "name": "Work Smarter",
+        "selected": false
+      },
+      {
+        "name": "Beating Burnout",
+        "selected": false
+      }
+    ]
+  }
 }
