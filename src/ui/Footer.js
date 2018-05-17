@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {
-  BottomNavigation,
-  BottomNavigationItem
-} from "material-ui/BottomNavigation";
-import Paper from "material-ui/Paper";
 import { Link } from "react-router-dom";
 
 import Icon from "material-ui/svg-icons/toggle/radio-button-unchecked";
+import Badge from "material-ui/Badge";
+
+import HomeIcon from "material-ui/svg-icons/action/home";
+import BookIcon from "material-ui/svg-icons/action/chrome-reader-mode";
+
+import { withStyles } from "@material-ui/core/styles";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const StyledFooter = styled.div`
   position: fixed;
@@ -25,15 +31,18 @@ const StyledBottomNavigationItem = styled.div`
 const navigationItems = [
   {
     label: "Home",
-    to: "/"
+    to: "/",
+    icon: <FavoriteIcon />
   },
   {
     label: "Journeys",
-    to: "/journeys"
+    to: "/journeys",
+    icon: <FavoriteIcon />
   },
   {
-    label: "ToDo",
-    to: "/todo"
+    label: "Micro Steps",
+    to: "/micro-steps",
+    icon: <FavoriteIcon />
   }
 ];
 
@@ -47,21 +56,20 @@ class Footer extends Component {
   render() {
     return (
       <StyledFooter>
-        <Paper zDepth={1}>
-          <BottomNavigation selectedIndex={this.state.selectedIndex}>
-            {navigationItems.map((item, i) => {
-              return (
-                <BottomNavigationItem
-                  label={item.label}
-                  onClick={() => this.select(i)}
-                  style={{ textAlign: "center" }}
-                  containerElement={<Link to={item.to} />}
-                  icon={<Icon />}
-                />
-              );
-            })}
-          </BottomNavigation>
-        </Paper>
+        <BottomNavigation selectedIndex={this.state.selectedIndex} showLabels>
+          {navigationItems.map((item, i) => {
+            return (
+              <BottomNavigationAction
+                label={item.label}
+                onClick={() => this.select(i)}
+                style={{ textAlign: "center" }}
+                component={Link}
+                to={item.to}
+                icon={item.icon}
+              />
+            );
+          })}
+        </BottomNavigation>
       </StyledFooter>
     );
   }

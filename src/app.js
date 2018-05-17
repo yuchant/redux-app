@@ -17,24 +17,21 @@ import Loader from "./ui/Loader";
 import Drawer from "./ui/Drawer";
 import Footer from "./ui/Footer";
 import AppFrame from "./ui/AppFrame";
-
-import getMuiTheme from "material-ui/styles/getMuiTheme";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { BottomNavigation, BottomNavigationItem } from "material-ui";
-
 import getData from "./data/dataActions";
 
-const muiTheme = getMuiTheme({
-  appBar: {
-    height: 45
-  }
-});
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import theme from "./theme";
 
-const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger({
+  duration: true,
+  timestamp: true
+});
 const store = createStore(
   reducers,
   applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware
   )
 );
 
@@ -44,21 +41,22 @@ store.dispatch(getData).then(() => {
 
 const ReduxApp = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <MuiThemeProvider muiTheme={muiTheme}>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Provider store={store}>
+        <Router>
           <AppFrame>
             <Drawer />
             <Loader />
             <Navbar />
             <Route exact path="/" component={Home} />
-            <Route exact path="/todo" component={ToDo} />
+            <Route exact path="/micro-steps" component={ToDo} />
             <Route path="/card/:id" component={CardDetail} />
             <Footer />
           </AppFrame>
-        </MuiThemeProvider>
-      </Router>
-    </Provider>
+        </Router>
+      </Provider>
+    </MuiThemeProvider>
   );
 };
 

@@ -7,7 +7,7 @@ import {
 
 const log = console.log.bind(this, "[todoReducers.js]");
 
-export default (todos = [], action) => {
+const todoItemReducer = (todos = [], action) => {
   log("TODOS IS: ", todos);
   console.log("action", action);
   if (!action) {
@@ -57,4 +57,26 @@ export default (todos = [], action) => {
     default:
       return todos;
   }
+};
+
+const calculateProgress = items => {
+  if (!items.length) {
+    return 0;
+  }
+  const completed = items.filter(todo => todo.complete).length;
+  const progress = completed / items.length;
+  return Math.ceil(progress * 100);
+};
+
+export default (
+  state = {
+    items: [],
+    percentage: 0
+  },
+  action
+) => {
+  return Object.assign({}, state, {
+    items: todoItemReducer(state.items, action),
+    progress: calculateProgress(state.items)
+  });
 };

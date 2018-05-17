@@ -6,7 +6,10 @@ const reducer = (
   state = {
     isFetching: false,
     dataReducerDefault: true,
-    todos: [],
+    todos: {
+      items: [],
+      progress: 0
+    },
     cards: [],
     cardsByID: []
   },
@@ -24,7 +27,10 @@ const reducer = (
         isFetching: false,
         receivedAt: action.receivedAt,
         receivedData: true,
-        ...action.data
+        ...action.data,
+        todos: {
+          items: action.data.todos
+        }
       });
       log("Calculated new state: ", results);
       return results;

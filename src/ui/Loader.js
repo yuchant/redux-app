@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import { withStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import cyan from "@material-ui/core/colors/cyan";
+
 const StyledLoader = styled.div`
   position: fixed;
   background: white;
@@ -21,8 +25,25 @@ const mapStateToProps = state => {
   };
 };
 
-const Loader = props => (
-  <StyledLoader visible={props.loading}>Fetching data...</StyledLoader>
-);
+const style = {
+  refresh: {
+    display: "inline-block",
+    position: "relative"
+  }
+};
+const styles = {
+  circle: {
+    width: 150
+  }
+};
 
-export default connect(mapStateToProps, null)(Loader);
+const Loader = props => {
+  const { classes } = props;
+  return (
+    <StyledLoader visible={props.loading}>
+      <CircularProgress className={classes.circle} size={175} thickness={1} />
+    </StyledLoader>
+  );
+};
+
+export default connect(mapStateToProps, null)(withStyles(styles)(Loader));

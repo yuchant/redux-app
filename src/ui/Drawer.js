@@ -1,9 +1,13 @@
 import React from "react";
-import Drawer from "material-ui/Drawer";
-import MenuItem from "material-ui/MenuItem";
-import RaisedButton from "material-ui/RaisedButton";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { closeNavbar } from "./uiActions";
+import { withStyles } from "@material-ui/core/styles";
+
+import Drawer from "@material-ui/core/Drawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
 
 const mapStateToProps = state => {
   return {
@@ -13,26 +17,61 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRequestChange: open => {
-      dispatch(closeNavbar(open));
+    onClose: open => {
+      dispatch(closeNavbar(false));
+    },
+    onMenuItemClick: () => {
+      dispatch(closeNavbar(false));
     }
   };
 };
 
+const links = [
+  {
+    label: "Home",
+    to: "/"
+  },
+  {
+    label: "Journeys",
+    to: "/journeys"
+  },
+  {
+    label: "ToDo",
+    to: "/todo"
+  }
+];
+
+const styles = {
+  drawer: {
+    width: "250px"
+  }
+};
+
 const MyDrawer = props => {
+  const { classes } = props;
   return (
     <div>
       <Drawer
         docked={false}
-        width={180}
+        classes={classes.drawer}
         open={props.open}
-        onRequestChange={open => props.onRequestChange(open)}
+        onClose={() => props.onClose()}
       >
-        <MenuItem>Menu Item</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
+        {links.map(link => {
+          return (
+            <Button
+              containerElement={<Link to={link.to} />}
+              onClick={props.onMenuItemClick}
+            >
+              {link.label}
+            </Button>
+          );
+        })}
       </Drawer>
     </div>
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(MyDrawer)
+);

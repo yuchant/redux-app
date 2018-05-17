@@ -10,8 +10,9 @@
     "2": {
       "id": "2",
       "type": "CTA",
+      "title": "Start Your Journey",
       "text": "",
-      "title": "Start Your Journey"
+      "subtitle": "It's Fun"
     },
     "3": {
       "id": "3",
@@ -23,13 +24,11 @@
   "todos": [
     {
       "index": 0,
-      "text": "Foobar",
-      "placeholder": "Foo"
+      "text": "Meditate for 5 minutes"
     },
     {
       "index": 1,
-      "text": "New",
-      "placeholder": "Foo"
+      "text": "Go on a nice walk"
     }
   ]
 }

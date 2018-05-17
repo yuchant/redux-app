@@ -7,6 +7,17 @@ import {
   deleteToDoItem
 } from "./todoActions";
 
+import { withStyles } from "@material-ui/core/styles";
+import ActionFavorite from "@material-ui/icons/Favorite";
+import ActionFavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import Checkbox from "@material-ui/core/Checkbox";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 const log = console.log.bind(this, "[ToDoItem.js]");
 
 const TextInput = styled.input`
@@ -60,35 +71,75 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ToDoItem = props => {
-  return (
-    <StyledToDoItem complete={props.complete}>
-      <input
-        type="checkbox"
-        checked={props.complete}
-        onChange={event => {
-          props.onCheckboxChange(event, props.index);
-        }}
-      />
-      <TextInput
-        type="text"
-        value={props.text}
-        placeholder={props.placeholder}
-        onChange={event => {
-          props.onChange(event, props.index);
-        }}
-        disabled={props.complete}
-      />
-      <Delete
-        onClick={event => {
-          props.onDelete(event, props.index);
-        }}
+const styles = theme => ({
+  root: {
+    width: "40px"
+  },
+  icon: {
+    fontSize: "30px"
+  }
+});
+
+@withStyles(styles)
+class ToDoItem extends React.Component {
+  state = {
+    expanded: false
+  };
+
+  onChange() {
+    this.setState(prevState => {
+      return {
+        expanded: !prevState.expanded
+      };
+    });
+  }
+  render() {
+    const { classes } = this.props;
+    log(this.props);
+    return (
+      <ExpansionPanel
+        expanded={this.state.expanded}
+        onChange={this.onChange.bind(this)}
       >
-        X
-      </Delete>
-      &nbsp; <small>Index: {props.index}</small>
-    </StyledToDoItem>
-  );
-};
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <FormControlLabel
+            onClick={event => event.stopPropagation()}
+            control={
+              <Checkbox
+                label="test"
+                checkedIcon={<ActionFavorite className={classes.icon} />}
+                icon={<ActionFavoriteBorder className={classes.icon} />}
+                checked={this.props.complete}
+                style={{ widht: "50px" }}
+                onChange={event => {
+                  this.props.onCheckboxChange(event, this.props.index);
+                  event.stopPropagation();
+                  event.nativeEvent.stopImmediatePropagation();
+                  return false;
+                }}
+                color="secondary"
+              />
+            }
+            label={this.props.text}
+          />
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
+            Aliquam eget maximus est, id dignissim quam.
+          </Typography>
+
+          <Delete
+            onClick={event => {
+              this.props.onDelete(event, this.props.index);
+            }}
+          >
+            Delete
+          </Delete>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    );
+  }
+}
 
 export default connect(null, mapDispatchToProps)(ToDoItem);
