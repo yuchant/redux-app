@@ -57,7 +57,12 @@ const styles = {
   // />
 };
 const CTA = props => {
-  const url = `/card/${props.id}`;
+  let url;
+  if (props.url) {
+    url = props.url;
+  } else {
+    url = `/card/${props.id}`;
+  }
   const { classes } = props;
   return (
     <Card className={classes.card}>

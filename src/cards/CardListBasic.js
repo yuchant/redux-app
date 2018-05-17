@@ -18,6 +18,9 @@ const styles = {
     marginBottom: "20px",
     fontSize: "30px",
     padding: "0 20px"
+  },
+  img: {
+    width: "100%"
   }
 };
 
@@ -28,7 +31,7 @@ const Basic = props => {
     <Card className={classes.card}>
       <Link to={url} style={{ textDecoration: "none" }}>
         <CardMedia>
-          <img src="//placeimg.com/640/300/arch" alt="" />
+          <img className={classes.img} src={props.image.url} alt="" />
         </CardMedia>
         <Typography className={classes.title} component="h2">
           {props.title}

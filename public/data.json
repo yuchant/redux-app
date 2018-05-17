@@ -5,20 +5,30 @@
       "id": "1",
       "type": "Basic",
       "text": "This is another basic homepage text payload",
-      "title": "Interested in interesting stuff?"
+      "title": "Interested in interesting stuff?",
+      "image": {
+        "url": "//placeimg.com/800/300/arch"
+      }
     },
     "2": {
       "id": "2",
       "type": "CTA",
       "title": "Start Your Journey",
       "text": "",
-      "subtitle": "It's Fun"
+      "subtitle": "It's Fun",
+      "url": "/journeys",
+      "image": {
+        "url": "//placeimg.com/800/300/people"
+      }
     },
     "3": {
       "id": "3",
       "type": "Basic",
       "text": "This is the CTA Module",
-      "title": "One crazy trick that will surprise you!"
+      "title": "One crazy trick that will surprise you!",
+      "image": {
+        "url": "//placeimg.com/800/300/tech"
+      }
     }
   },
   "todos": [
