@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 import { RECEIVE_DATA, GET_DATA } from "./data/dataActions";
 import data from "./data/dataReducers";
-import todos from "./todo/todoReducers";
+import todos from "./microsteps/microstepReducers";
 import cards from "./cards/cardsReducers";
 import ui from "./ui/uiReducers";
 import journeys from "./journeys/journeysReducers";

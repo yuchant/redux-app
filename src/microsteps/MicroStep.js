@@ -2,10 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import {
-  updateToDoItem,
-  completeToDoItem,
-  deleteToDoItem
-} from "./todoActions";
+  updateMicroStep,
+  completeMicroStep,
+  deleteMicroStep
+} from "./microstepActions";
 
 import { withStyles } from "@material-ui/core/styles";
 import ActionFavorite from "@material-ui/icons/Favorite";
@@ -20,7 +20,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 
 import { cyan, red } from "@material-ui/core/colors";
-const log = console.log.bind(this, "[ToDoItem.js]");
+const log = console.log.bind(this, "[MicroStepItem.js]");
 
 const TextInput = styled.input`
   padding: 5px 10px;
@@ -28,7 +28,7 @@ const TextInput = styled.input`
   min-width: 200px;
 `;
 
-const StyledToDoItem = styled.div`
+const StyledMicroStep = styled.div`
   border: 1px solid #eee;
   padding: 5px 10px;
   ${props =>
@@ -48,16 +48,16 @@ const mapDispatchToProps = dispatch => {
   return {
     onChange: (event, index) => {
       log("onChange() of input. Action generated", index);
-      dispatch(updateToDoItem(event.target.value, index));
+      dispatch(updateMicroStep(event.target.value, index));
     },
     onDelete: (event, index) => {
       log("onDelete()", index);
-      dispatch(deleteToDoItem(index));
+      dispatch(deleteMicroStep(index));
     },
     onCheckboxChange: (event, index) => {
       const isComplete = event.target.checked;
       log("onCheckboxChange() of input. Action generated", index, isComplete);
-      dispatch(completeToDoItem(isComplete, index));
+      dispatch(completeMicroStep(isComplete, index));
     }
   };
 };
@@ -91,7 +91,7 @@ const styles = theme => ({
 });
 
 
-class ToDoItem extends React.Component {
+class MicroStep extends React.Component {
   state = {
     expanded: false
   };
@@ -162,4 +162,4 @@ class ToDoItem extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(ToDoItem));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(MicroStep));

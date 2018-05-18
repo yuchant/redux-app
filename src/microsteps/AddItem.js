@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { addToDoItem } from "./todoActions";
+import { addMicroStep } from "./microstepActions";
 
 const log = console.log.bind(this, "[AddItem.js]");
 
@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
       log("onClick mapped from AddButton props and called");
-      const action = addToDoItem();
+      const action = addMicroStep();
 
       log("action generated is ", action);
       return dispatch(action);

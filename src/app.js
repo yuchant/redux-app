@@ -29,7 +29,7 @@ import Footer from "./ui/Footer";
 import AppFrame from "./ui/AppFrame";
 
 // route root components
-import ToDo from "./todo/ToDo";
+import MicroSteps from "./microsteps/MicroSteps";
 import Home from "./cards/Home";
 import Journeys from "./journeys/Journeys";
 import JourneysConfigure from "./journeys/Configure";
@@ -78,7 +78,7 @@ const ReduxApp = () => {
             <Loader />
             <Navbar />
             <Route exact path="/" component={Home} />
-            <Route exact path="/micro-steps" component={ToDo} />
+            <Route exact path="/micro-steps" component={MicroSteps} />
             <Route exact path="/journeys" component={Journeys} />
             <Route
               exact

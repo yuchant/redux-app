@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import ToDoItem from "./ToDoItem";
+import MicroStep from "./MicroStep";
 import AddItem from "./AddItem";
 import ProgressBar from "./ProgressBar";
 
@@ -29,7 +29,7 @@ const ConnectedToDoList = props => {
         <ProgressBar />
       </StyledProgrssBar>
       {props.todos.map(todo => {
-        return <ToDoItem {...todo} />;
+        return <MicroStep {...todo} />;
       })}
     </StyledTodo>
   );
