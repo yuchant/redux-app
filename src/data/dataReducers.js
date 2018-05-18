@@ -38,11 +38,9 @@ const reducer = (
           items: action.data.microsteps
         })
       });
-      log("Calculated new state: ", results);
       return results;
     case RECEIVE_ARTICLES:
       let scraped = scrapeArticles(action.html, action.limit);
-      console.log("Receiving articles", scraped);
       return Object.assign({}, state, {
         isFetching: false,
         isFetchingReason: null,
@@ -84,13 +82,14 @@ const reducer = (
           url: article.img
         }
       }));
+      window.lastScrapedArticleCards = articleCards;
       return Object.assign({}, state, {
         journeys: Object.assign({}, state.journeys, {
           myArticleCards: articleCards
         })
       });
     default:
-      log("Default:", state);
+
       return state;
   }
 };

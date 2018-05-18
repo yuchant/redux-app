@@ -1,16 +1,58 @@
 {
-  "cards": ["1", "2", "3"],
+  "COMMENT": "This file must be ignored. It was used to populate initial state before conceiving of the parser+proxy. ",
+  "cards": [
+    "27028",
+    "CTA",
+    "27598",
+    "27024",
+    "26920"
+  ],
   "cardsByID": {
-    "1": {
-      "id": "1",
+    "27028": {
       "type": "Basic",
-      "text": "This is another basic homepage text payload",
-      "title": "Interested in interesting stuff?",
+      "id": "27028",
+      "title": "How We’re Helping Women in Prison Find Their Purpose",
+      "text": "by\n        Josephine Chu",
+      "category": "Well-Being",
       "image": {
-        "url": "//placeimg.com/800/300/arch"
-      }
+        "url": "https://s3.amazonaws.com/skinner-production/stories/display_images/000/027/028/large/GettyImages-682483084.jpg?1522187923"
+      },
+      "microSteps": []
     },
-    "2": {
+    "27598": {
+      "type": "Basic",
+      "id": "27598",
+      "title": "Sleepless Countries Count Their Enemies, It’s time to Sleep and Count Our Allies",
+      "text": "by\n         Dr. Erel N. Margalit",
+      "category": "Well-Being",
+      "image": {
+        "url": "https://s3.amazonaws.com/skinner-production/stories/featured_images/000/027/598/large/sleep_photo.jpg?1522784680"
+      },
+      "microSteps": []
+    },
+    "27024": {
+      "type": "Basic",
+      "id": "27024",
+      "title": "Don’t Let Social Media Stalking Obstruct The Natural Process of Getting Over An Ex— and 6 Tricks to Stop Yourself If You Are",
+      "text": "by\n        Elizabeth Venzin",
+      "category": "Well-Being",
+      "image": {
+        "url": "https://s3.amazonaws.com/skinner-production/stories/display_images/000/027/024/large/GettyImages-722210251.jpg?1522181973"
+      },
+      "microSteps": []
+    },
+    "26920": {
+      "type": "Basic",
+      "id": "26920",
+      "title": "How I Found Life and Freedom on Death Row",
+      "text": "by\n        Anthony Ray Hinton",
+      "category": "Well-Being",
+      "image": {
+        "url": "https://s3.amazonaws.com/skinner-production/stories/featured_images/000/026/920/large/GettyImages-879931364.jpg?1522093653"
+      },
+      "microSteps": []
+    },
+    "CTA": {
       "id": "2",
       "type": "CTA",
       "title": "Start Your Journey",
@@ -19,15 +61,6 @@
       "url": "/journeys",
       "image": {
         "url": "//placeimg.com/800/300/people"
-      }
-    },
-    "3": {
-      "id": "3",
-      "type": "Basic",
-      "text": "This is the CTA Module",
-      "title": "One crazy trick that will surprise you!",
-      "image": {
-        "url": "//placeimg.com/800/300/tech"
       }
     }
   },

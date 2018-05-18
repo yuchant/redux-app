@@ -19,6 +19,11 @@ const styles = {
 		"& a": {
 			color: "inherit"
 		}
+	},
+	content: {
+		textAlign: "center",
+		display: 'flex',
+		alignItems: 'center'
 	}
 }
 
@@ -31,7 +36,10 @@ const NotificationBar = (props) => {
 	      	vertical: "bottom",
 	      	horizontal: "right"
 	      }}
-	      className={classes.bar}
+	      classes={{
+	      	root: classes.bar,
+	      	anchorOriginBottomRight: classes.content
+	      }}
 	      ContentProps={{
 	        'aria-describedby': 'message-id',
 	      }}
