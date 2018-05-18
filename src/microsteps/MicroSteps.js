@@ -9,7 +9,7 @@ const log = console.log.bind(this, "[ToDo.js]");
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos.items
+    microsteps: state.microsteps.items
   };
 };
 
@@ -28,7 +28,7 @@ const ConnectedToDoList = props => {
       <StyledProgrssBar>
         <ProgressBar />
       </StyledProgrssBar>
-      {props.todos.map(todo => {
+      {props.microsteps.map(todo => {
         return <MicroStep {...todo} />;
       })}
     </StyledTodo>

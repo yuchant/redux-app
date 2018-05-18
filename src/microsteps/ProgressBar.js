@@ -8,9 +8,9 @@ import cyan from "@material-ui/core/colors/cyan";
 const mapStateToProps = state => {
   console.log("State", state);
   return {
-    percentage: state.todos.progress,
-    completedCount: state.todos.completed,
-    totalCount: state.todos.items.length
+    percentage: state.microsteps.progress,
+    completedCount: state.microsteps.completed,
+    totalCount: state.microsteps.items.length
   };
 };
 

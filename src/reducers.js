@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 import { RECEIVE_DATA, GET_DATA } from "./data/dataActions";
 import data from "./data/dataReducers";
-import todos from "./microsteps/microstepReducers";
+import microsteps from "./microsteps/microstepReducers";
 import cards from "./cards/cardsReducers";
 import ui from "./ui/uiReducers";
 import journeys from "./journeys/journeysReducers";
@@ -13,7 +13,7 @@ const combinedReducers = (state = {}, action) => {
   // we can't use combineReducers because it rejects all previous states not passed
   // to combineReducers
   return Object.assign({}, state, {
-    todos: todos(state.todos, action),
+    microsteps: microsteps(state.microsteps, action),
     cards: cards(state.cards, action),
     ui: ui(state.ui, action),
     journeys: journeys(state.journeys, action),

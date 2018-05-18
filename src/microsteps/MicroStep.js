@@ -46,18 +46,18 @@ const StyledMicroStep = styled.div`
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: (event, index) => {
-      log("onChange() of input. Action generated", index);
-      dispatch(updateMicroStep(event.target.value, index));
+    onChange: (event, id) => {
+      log("onChange() of input. Action generated", id);
+      dispatch(updateMicroStep(event.target.value, id));
     },
-    onDelete: (event, index) => {
-      log("onDelete()", index);
-      dispatch(deleteMicroStep(index));
+    onDelete: (event, id) => {
+      log("onDelete()", id);
+      dispatch(deleteMicroStep(id));
     },
-    onCheckboxChange: (event, index) => {
+    onCheckboxChange: (event, id) => {
       const isComplete = event.target.checked;
-      log("onCheckboxChange() of input. Action generated", index, isComplete);
-      dispatch(completeMicroStep(isComplete, index));
+      log("onCheckboxChange() of input. Action generated", id, isComplete);
+      dispatch(completeMicroStep(isComplete, id));
     }
   };
 };
@@ -129,7 +129,7 @@ class MicroStep extends React.Component {
                 icon={<ActionFavoriteBorder className={classes.icon} />}
                 checked={this.props.complete}
                 onChange={event => {
-                  this.props.onCheckboxChange(event, this.props.index);
+                  this.props.onCheckboxChange(event, this.props.id);
                   event.stopPropagation();
                   event.nativeEvent.stopImmediatePropagation();
                   return false;
@@ -151,7 +151,7 @@ class MicroStep extends React.Component {
             className={classes.delete}
             size="small"
             onClick={event => {
-              this.props.onDelete(event, this.props.index);
+              this.props.onDelete(event, this.props.id);
             }}
           >
             Delete

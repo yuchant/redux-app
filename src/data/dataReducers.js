@@ -15,14 +15,9 @@ const reducer = (
   state = {
     isFetching: false,
     isFetchingReason: null,
-    todos: {
-      items: [],
-      progress: 0
-    },
     cards: [],
     cardsByID: {},
-    articlesByCategory: {},
-    microStepsByID: {}
+    articlesByCategory: {}
   },
   action
 ) => {
@@ -39,9 +34,9 @@ const reducer = (
         receivedAt: action.receivedAt,
         receivedData: true,
         ...action.data,
-        todos: {
-          items: action.data.todos
-        }
+        microsteps: Object.assign({}, state.microsteps, {
+          items: action.data.microsteps
+        })
       });
       log("Calculated new state: ", results);
       return results;

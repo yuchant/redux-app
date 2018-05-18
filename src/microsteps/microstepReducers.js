@@ -2,56 +2,63 @@ import {
   ADD_MICROSTEP,
   UPDATE_MICROSTEP,
   COMPLETE_MICROSTEP,
-  DELETE_MICROSTEP
+  DELETE_MICROSTEP,
+  DELETE_MICROSTEP_BY_ID,
 } from "./microstepActions";
 
 const log = console.log.bind(this, "[microstepReducers.js]");
+
+
+const reindex = (microsteps) => {
+  // reindex
+  microsteps.forEach((microstep, i) => {
+    microstep.index = i;
+  });
+
+  return microsteps
+}
 
 const microstepReducer = (microsteps = [], action) => {
   if (!action) {
     return microsteps;
   }
+  let index;
+  let microstep;
+
   switch (action.type) {
     case ADD_MICROSTEP:
-      return [
-        ...microsteps,
-        {
-          text: "",
-          placeholder: action.placeholder,
-          index: microsteps.length,
-          complete: false
-        }
+      let microstepsUpdated = [
+        ...microsteps.slice(),
+        action.microstep
       ];
+      
+      return reindex(microstepsUpdated);
 
     case UPDATE_MICROSTEP:
       // it seems like the input should maintain local state
       // and call update once, but its not like we're building a code editor
-      log("Updating item of index: ", action.index);
-      let microstepsUpdated = microsteps.slice();
-      // note we are using index as ID. Need some way to detect which item is being modified.
-      microstepsUpdated[action.index].text = action.text;
+      microstepsUpdated = microsteps.slice();
+      index = microstepsUpdated.findIndex((step) => step.id == action.id)
+      microstepsUpdated[index].text = action.text;
       return microstepsUpdated;
 
     case COMPLETE_MICROSTEP:
       microstepsUpdated = microsteps.slice();
-      let microstep = microstepsUpdated[action.index];
-      if (microstep.text.length == 0) {
-        log(
-          "Trying to skip / not enable button due to text being empty, but props aren't tied to state"
-        );
-        return microsteps;
-      }
+      index = microstepsUpdated.findIndex((step) => step.id == action.id)
+      microstep = microstepsUpdated[index];
       microstep.complete = action.complete;
       return microstepsUpdated;
 
+    case DELETE_MICROSTEP_BY_ID:
+      microstepsUpdated = microsteps.slice();
+      return microsteps;
+
     case DELETE_MICROSTEP:
       microstepsUpdated = microsteps.slice();
-      microstepsUpdated.splice(action.index, 1);
-      // reindex
-      microstepsUpdated.forEach((microstep, i) => {
-        microstep.index = i;
-      });
-      return microstepsUpdated;
+      index = microstepsUpdated.findIndex((step) => step.id == action.id)
+      microstepsUpdated.splice(index, 1);
+      return reindex(microstepsUpdated);
+
     default:
       return microsteps;
   }

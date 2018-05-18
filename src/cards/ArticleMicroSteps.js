@@ -6,9 +6,13 @@ import Switch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
+import { addMicroStep, deleteMicroStep } from "../microsteps/microstepActions";
+
+
 const log = console.log.bind(this, "[ArticleMicroSteps.js]");
 
 const mapStateToProps = (state, ownProps) => {
+  const currentMicroSteps = state.microsteps.items;
   return {
     microSteps: ownProps.article.microSteps.filter(step => {
       // return only selected steps
@@ -19,7 +23,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeMicroStep: (event, step) => {}
+    onChangeMicroStep: (event, step) => {
+      log("change step: ", event.target.checked);
+      // this is a little sketchy. absolutely require flattened data storing all elements by ID
+      // addMicroStep should accept a step ID which is then pulled from state
+      event.target.checked ? dispatch(addMicroStep(step)) : dispatch(deleteMicroStep(step.id));
+    }
   };
 };
 
