@@ -32,13 +32,17 @@ const styles = {
     overflow: "hidden",
     position: "relative"
   },
-  img: {
+  mediaObjectFitContainer: {
     position: "absolute",
-    width: "100%",
-    top: 0,
-    right: 0,
     left: 0,
-    bottom: 0
+    right: 0,
+    bottom: 0,
+    top: 0
+  },
+  img: {
+    objectFit: "cover",
+    width: "100%",
+    height: "100%"
   }
 };
 
@@ -50,7 +54,9 @@ const Basic = props => {
       <Link to={url} style={{ textDecoration: "none" }}>
         <CardMedia className={classes.media}>
           <div className={classes.mediaAspect}>
-            <img className={classes.img} src={props.image.url} alt="" />
+            <div className={classes.mediaObjectFitContainer}>
+              <img className={classes.img} src={props.image.url} alt="" />
+            </div>
           </div>
         </CardMedia>
         <StyledCategory>{props.category}</StyledCategory>

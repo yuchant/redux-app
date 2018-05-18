@@ -43,10 +43,15 @@ const styles = {
     fontSize: 45,
     fontFamily: "Playfair Display",
     color: "white",
-    padding: "0 20px"
+    padding: "0 20px",
+    lineHeight: "1.2"
   },
   subtitle: {
-    color: "white"
+    fontFamily: "Playfair Display",
+    marginTop: 10,
+    color: "white",
+    fontSize: 18,
+    fontStyle: "italic"
   }
   // subtitle = { props.subtitle }
   // subtitleColor = "white"
