@@ -6,6 +6,13 @@ import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import cyan from "@material-ui/core/colors/cyan";
 
+const mapStateToProps = state => {
+  return {
+    loading: state.isFetching,
+    reason: state.isFetchingReason
+  };
+};
+
 const StyledLoader = styled.div`
   position: fixed;
   background: white;
@@ -19,21 +26,23 @@ const StyledLoader = styled.div`
   justify-content: center;
 `;
 
-const mapStateToProps = state => {
-  return {
-    loading: state.isFetching
-  };
-};
+const StyledReason = styled.div`
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: "Playfair Display";
+  font-size: 18px;
+`;
 
-const style = {
-  refresh: {
-    display: "inline-block",
-    position: "relative"
-  }
-};
+const Center = styled.div`
+  text-align: center;
+`;
+
 const styles = {
   circle: {
-    width: 150
+    display: "inline-block",
+    width: 150,
+    margin: "0 auto"
   }
 };
 
@@ -41,7 +50,12 @@ const Loader = props => {
   const { classes } = props;
   return (
     <StyledLoader visible={props.loading}>
-      <CircularProgress className={classes.circle} size={175} thickness={1} />
+      <Center>
+        <CircularProgress className={classes.circle} size={175} thickness={1} />
+        <StyledReason>
+          <small>{props.reason}</small>
+        </StyledReason>
+      </Center>
     </StyledLoader>
   );
 };

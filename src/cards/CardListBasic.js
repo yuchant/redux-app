@@ -8,19 +8,26 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import StyledCategory from "../common/StyledCategory";
 
 const styles = {
-  card: {},
+  card: {
+    paddingBottom: 15
+  },
   title: {
     fontFamily: "Playfair Display",
     textAlign: "center",
     marginTop: "15px",
     marginBottom: "20px",
-    fontSize: "30px",
-    padding: "0 20px"
+    fontSize: "23px",
+    padding: "0 20px",
+    lineHeight: 1.4
   },
   img: {
     width: "100%"
+  },
+  media: {
+    marginBottom: 20
   }
 };
 
@@ -30,9 +37,10 @@ const Basic = props => {
   return (
     <Card className={classes.card}>
       <Link to={url} style={{ textDecoration: "none" }}>
-        <CardMedia>
+        <CardMedia className={classes.media}>
           <img className={classes.img} src={props.image.url} alt="" />
         </CardMedia>
+        <StyledCategory>{props.category}</StyledCategory>
         <Typography className={classes.title} component="h2">
           {props.title}
         </Typography>

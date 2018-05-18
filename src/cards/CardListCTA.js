@@ -42,7 +42,8 @@ const styles = {
   title: {
     fontSize: 45,
     fontFamily: "Playfair Display",
-    color: "white"
+    color: "white",
+    padding: "0 20px"
   },
   subtitle: {
     color: "white"

@@ -39,8 +39,8 @@ const styles = {
   title: {
     color: "white",
     fontSize: 20,
-    letterSpacing: ".07em",
-    fontWeight: "bold",
+    letterSpacing: ".05em",
+    // fontWeight: "500",
     position: "absolute",
     left: "50%",
     transform: "translateX(-50%)"

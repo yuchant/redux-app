@@ -16,7 +16,8 @@ import ConfigureNextButton from "./ConfigureNextButton";
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    topics: state.journeys.topics
+    topics: state.journeys.topics,
+    hasConfigured: state.journeys.hasConfigured
   };
 };
 
@@ -44,6 +45,9 @@ const Center = styled.div`
 const StyledChips = styled.div`
   text-align: center;
   margin-top: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  marginrleft: auto;
 `;
 
 const styles = theme => {
@@ -90,17 +94,15 @@ const styles = theme => {
 class Configure extends React.Component {
   render() {
     const { classes } = this.props;
-    console.log("PROPS", this.props);
     return (
       <Center>
         <StyledConfigure>
           <Typography align="center" variant="display1">
-            Start Your Journey
+            {this.props.hasConfigured ? "Change" : "Start"} Your Journey
           </Typography>
           <Typography align="center" className={classes.helpText}>
-            What do you want to thrive at?
+            Where do you want to thrive?
           </Typography>
-
           <StyledChips>
             {this.props.topics.map(topic => {
               return (

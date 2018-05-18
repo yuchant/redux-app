@@ -1,9 +1,11 @@
 import fetch from "cross-fetch";
+import getProxyUrl from "./proxy";
 
 export const REQUEST_DATA = "REQUEST_DATA";
-export const requestData = () => {
+export const requestData = reason => {
   return {
-    type: REQUEST_DATA
+    type: REQUEST_DATA,
+    reason: reason
   };
 };
 
@@ -17,29 +19,100 @@ export const receiveData = data => {
   };
 };
 
-const getData = dispatch => {
-  // First dispatch: the app state is updated to inform
-  // that the API call is starting.
+export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
+export const receiveArticles = (category, html, limit) => {
+  return {
+    type: RECEIVE_ARTICLES,
+    category: category,
+    html: html,
+    limit: limit
+  };
+};
 
-  dispatch(requestData());
-  // The function called by the thunk middleware can return a value,
-  // that is passed on as the return value of the dispatch method.
+export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE";
+export const receiveArticle = (html, id) => {
+  return {
+    type: RECEIVE_ARTICLE,
+    html: html,
+    id: id
+  };
+};
 
-  // In this case, we return a promise to wait for.
-  // This is not required by thunk middleware, but it is convenient for us.
+export const TRANSFORM_ARTICLES_TO_CARDS = "TRANSFORM_ARTICLES_TO_CARDS";
+export const transformArticlesToCards = () => {
+  return {
+    type: TRANSFORM_ARTICLES_TO_CARDS
+  };
+};
 
-  return fetch("./data.json")
+export const getData = dispatch => {
+  // get inital site data from json "endpoint"
+  return fetch("/data.json")
     .then(
       response => response.json(),
       error => console.log("An error occurred.", error)
     )
     .then(json => {
-      // Here, we update the app state with the results of the API call
-      console.log("JSON", json);
       setTimeout(() => {
         dispatch(receiveData(json));
       }, 500);
     });
 };
 
-export default getData;
+export const getArticle = id => dispatch => {
+  dispatch(requestData("Getting article"));
+  const targetRoot = "https://www.thriveglobal.com/stories/";
+  const fetchUrl = getProxyUrl([targetRoot, id].join(""));
+  return fetch(fetchUrl)
+    .then(
+      response => response.text(),
+      error => console.log("Error fetching", error)
+    )
+    .then(html => {
+      setTimeout(() => {
+        dispatch(receiveArticle(html, id));
+      });
+    });
+};
+
+export const getArticles = (categories, limit) => dispatch => {
+  // download each related article through our aws lambda function
+  // and when all network requests complete, html parse the results inot
+  // usable json
+  // this will fake a real endpoint but with live data
+  dispatch(requestData(`Getting Articles for ${categories.join(", ")}`));
+  const slugify = text => {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, "-") // Replace spaces with -
+      .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+      .replace(/\-\-+/g, "-") // Replace multiple - with single -
+      .replace(/^-+/, "") // Trim - from start of text
+      .replace(/-+$/, ""); // Trim - from end of text
+  };
+  const targetRoot = "https://www.thriveglobal.com/categories/";
+
+  const allCategoryFetchPromises = categories.map(category => {
+    const categorySlug = slugify(category);
+    const fetchUrl = getProxyUrl([targetRoot, categorySlug].join(""));
+    console.log(
+      "Getting articles for category:",
+      category,
+      categorySlug,
+      "with url:",
+      fetchUrl
+    );
+    return fetch(fetchUrl)
+      .then(
+        response => response.text(),
+        error => console.error("Error occured in fetching", error)
+      )
+      .then(text => {
+        dispatch(receiveArticles(category, text, limit));
+      });
+  });
+  return Promise.all(allCategoryFetchPromises).then(() => {
+    dispatch(transformArticlesToCards());
+  });
+};

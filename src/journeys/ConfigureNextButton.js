@@ -5,115 +5,62 @@ import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import green from "@material-ui/core/colors/green";
 import cyan from "@material-ui/core/colors/cyan";
-
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import CheckIcon from "@material-ui/icons/Check";
-import SaveIcon from "@material-ui/icons/Save";
-
+import styled from "styled-components";
 import { connect } from "react-redux";
+import * as journeysActions from "./journeysActions";
+import { push } from "react-router-redux";
 
 const mapStateToProps = state => {
-  const completed = state.journeys.topics.filter(topic => topic.completed);
+  const completed = state.journeys.topics.filter(topic => topic.selected);
   return {
-    buttonValid: completed.length > 0
+    buttonValid: completed.length > 0,
+    hasConfigured: state.journeys.hasConfigured
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    completeConfiguration: () => {
+      dispatch(journeysActions.completeConfiguration());
+      dispatch(push("/journeys"));
+    }
   };
 };
 
 const styles = theme => ({
-  root: {
-    marginTop: 20,
-    textAlign: "center"
-  },
-  wrapper: {
-    margin: theme.spacing.unit,
-    position: "relative"
-  },
-  buttonSuccess: {
-    backgroundColor: cyan[200],
-    "&:hover": {
-      backgroundColor: cyan[700]
-    }
-  },
-  fabProgress: {
-    color: green[500],
-    position: "absolute",
-    top: -6,
-    left: -6,
-    zIndex: 1
-  },
-  buttonProgress: {
-    color: green[500],
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    marginTop: -12,
-    marginLeft: -12
+  button: {
+    width: 120,
+    height: 120,
+    fontSize: 18,
+    color: "white"
   }
 });
 
-class CircularIntegration extends React.Component {
-  state = {
-    loading: false,
-    success: false
-  };
+const Main = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  handleButtonClick = () => {
-    if (!this.state.loading) {
-      this.setState(
-        {
-          success: false,
-          loading: true
-        },
-        () => {
-          this.timer = setTimeout(() => {
-            this.setState({
-              loading: false,
-              success: true
-            });
-          }, 500);
-        }
-      );
-    }
-  };
-
-  timer = undefined;
-
-  render() {
-    const { loading, success } = this.state;
-    const { classes } = this.props;
-    const buttonClassname = classNames({
-      [classes.buttonSuccess]: success
-    });
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.wrapper}>
-          <Button
-            variant="raised"
-            color="primary"
-            className={buttonClassname}
-            disabled={this.props.buttonValid}
-            onClick={this.handleButtonClick}
-          >
-            Start Thriving
-          </Button>
-          {loading && (
-            <CircularProgress size={24} className={classes.buttonProgress} />
-          )}
-        </div>
-      </div>
-    );
-  }
-}
-
-CircularIntegration.propTypes = {
-  classes: PropTypes.object.isRequired
+const ConfigureNextButton = props => {
+  const { classes } = props;
+  return (
+    <Main>
+      <Button
+        variant="fab"
+        color="primary"
+        aria-label="continue"
+        className={classes.button}
+        disabled={!props.buttonValid}
+        onClick={props.completeConfiguration}
+      >
+        {props.hasConfigured ? "KEEP" : "START"} THRIVING
+      </Button>
+    </Main>
+  );
 };
 
-export default connect(mapStateToProps)(
-  withStyles(styles)(CircularIntegration)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(ConfigureNextButton)
 );

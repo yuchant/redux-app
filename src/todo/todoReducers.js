@@ -8,8 +8,6 @@ import {
 const log = console.log.bind(this, "[todoReducers.js]");
 
 const todoItemReducer = (todos = [], action) => {
-  log("TODOS IS: ", todos);
-  console.log("action", action);
   if (!action) {
     return todos;
   }
@@ -70,8 +68,9 @@ const calculateProgress = items => {
 
 export default (
   state = {
-    items: [],
-    percentage: 0
+    items: [], // these are micro steps
+    progress: 0,
+    completed: 0
   },
   action
 ) => {

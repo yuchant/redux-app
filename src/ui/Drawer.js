@@ -36,8 +36,13 @@ const links = [
     to: "/journeys"
   },
   {
-    label: "ToDo",
-    to: "/todo"
+    label: "Edit Journeys",
+    to: "/journeys/configure"
+  },
+
+  {
+    label: "My Micro Steps",
+    to: "/micro-steps"
   }
 ];
 
@@ -60,7 +65,8 @@ const MyDrawer = props => {
         {links.map(link => {
           return (
             <Button
-              containerElement={<Link to={link.to} />}
+              component={Link}
+              to={link.to}
               onClick={props.onMenuItemClick}
             >
               {link.label}

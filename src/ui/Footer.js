@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Icon from "material-ui/svg-icons/toggle/radio-button-unchecked";
-import Badge from "material-ui/Badge";
-
-import HomeIcon from "material-ui/svg-icons/action/home";
-import BookIcon from "material-ui/svg-icons/action/chrome-reader-mode";
-
 import { withStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -15,6 +9,7 @@ import RestoreIcon from "@material-ui/icons/Restore";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Paper from "@material-ui/core/Paper";
+import Badge from "@material-ui/core/Badge";
 
 const StyledFooter = styled.div`
   position: fixed;
@@ -33,12 +28,12 @@ const navigationItems = [
   {
     label: "Home",
     to: "/",
-    icon: <FavoriteIcon />
+    icon: <RestoreIcon />
   },
   {
     label: "Journeys",
     to: "/journeys",
-    icon: <FavoriteIcon />
+    icon: <LocationOnIcon />
   },
   {
     label: "Micro Steps",

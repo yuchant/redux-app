@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
 import { RECEIVE_DATA, GET_DATA } from "./data/dataActions";
 import data from "./data/dataReducers";
 import todos from "./todo/todoReducers";
@@ -15,7 +16,8 @@ const combinedReducers = (state = {}, action) => {
     todos: todos(state.todos, action),
     cards: cards(state.cards, action),
     ui: ui(state.ui, action),
-    journeys: journeys(state.journeys, action)
+    journeys: journeys(state.journeys, action),
+    router: routerReducer
   });
 };
 

@@ -18,19 +18,23 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CardList = props => {
+export const CardList = props => {
+  console.log("CardList Unconnected", props);
   return (
     <div>
-      {props.cards.map(card => {
-        const Component = getComponent(card.type);
-        return (
-          <CardWrapper>
-            <Component {...card} />
-          </CardWrapper>
-        );
-      })}
+      {props.cards
+        ? props.cards.map(card => {
+            const Component = getComponent(card.type);
+            return (
+              <CardWrapper>
+                <Component {...card} />
+              </CardWrapper>
+            );
+          })
+        : null}
     </div>
   );
 };
 
-export default connect(mapStateToProps, null)(CardList);
+const ConnectedCardList = connect(mapStateToProps, null)(CardList);
+export default ConnectedCardList;
