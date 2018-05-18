@@ -90,7 +90,7 @@ const styles = theme => ({
   }
 });
 
-@withStyles(styles)
+
 class ToDoItem extends React.Component {
   state = {
     expanded: false
@@ -162,4 +162,4 @@ class ToDoItem extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ToDoItem);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(ToDoItem));

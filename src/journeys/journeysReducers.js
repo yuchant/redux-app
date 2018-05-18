@@ -1,6 +1,7 @@
-const log = console.log.bind(this, "[journeyReducers.js]");
 import * as journeyActions from "./journeysActions";
 import { push } from "react-router-redux";
+
+const log = console.log.bind(this, "[journeyReducers.js]");
 
 const topics = (topics, action) => {
   switch (action.type) {

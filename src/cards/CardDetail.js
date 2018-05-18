@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getArticle } from "../data/dataActions";
-const log = console.log.bind(this, "[CardDetail.js]");
 import { Typography } from "@material-ui/core/";
 import styled from "styled-components";
 import cyan from "@material-ui/core/colors/cyan";
@@ -9,6 +8,8 @@ import { Link } from "react-router-dom";
 import StyledCategory from "../common/StyledCategory";
 import Divider from "@material-ui/core/Divider";
 import ArticleMicroSteps from "./ArticleMicroSteps";
+
+const log = console.log.bind(this, "[CardDetail.js]");
 
 const mapStateToProps = (state, ownProps) => {
   log("Match state to props", state, ownProps);
