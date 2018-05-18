@@ -2,7 +2,6 @@ export const ADD_MICROSTEP = "ADD_MICROSTEP";
 export const COMPLETE_MICROSTEP = "COMPLETE_MICROSTEP";
 export const UPDATE_MICROSTEP = "UPDATE_MICROSTEP";
 export const DELETE_MICROSTEP = "DELETE_MICROSTEP";
-export const DELETE_MICROSTEP_BY_ID = "DELETE_MICROSTEP_BY_ID";
 
 const log = console.log.bind(this, "[actionCreators.js]");
 
@@ -38,14 +37,6 @@ export const completeMicroStep = (complete, id) => {
 export const deleteMicroStep = id => {
   return {
     type: DELETE_MICROSTEP,
-    id: id
-  };
-};
-
-
-export const deleteMicroStepById = id => {
-  return {
-    type: DELETE_MICROSTEP_BY_ID,
     id: id
   };
 };

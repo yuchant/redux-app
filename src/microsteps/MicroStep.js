@@ -18,8 +18,8 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-
 import { cyan, red } from "@material-ui/core/colors";
+
 const log = console.log.bind(this, "[MicroStepItem.js]");
 
 const TextInput = styled.input`
@@ -43,6 +43,14 @@ const StyledMicroStep = styled.div`
     margin-bottom: 10px;
   }
 `;
+
+const mapStateToProps = (state, ownProps) => {
+  // ugly. should probably not pass any props but an ID to this child, then let component pull from redux.
+  // we are unwittingly holding state in react through props passed from parent>child.
+  return {
+    complete: state.microsteps.items.find((step) => step.id == ownProps.id).complete
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -105,7 +113,6 @@ class MicroStep extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    log(this.props);
     return (
       <ExpansionPanel
         expanded={this.state.expanded}
@@ -162,4 +169,4 @@ class MicroStep extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(MicroStep));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MicroStep));

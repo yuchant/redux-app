@@ -3,7 +3,6 @@ import {
   UPDATE_MICROSTEP,
   COMPLETE_MICROSTEP,
   DELETE_MICROSTEP,
-  DELETE_MICROSTEP_BY_ID,
 } from "./microstepActions";
 
 const log = console.log.bind(this, "[microstepReducers.js]");
@@ -49,14 +48,11 @@ const microstepReducer = (microsteps = [], action) => {
       microstep.complete = action.complete;
       return microstepsUpdated;
 
-    case DELETE_MICROSTEP_BY_ID:
-      microstepsUpdated = microsteps.slice();
-      return microsteps;
-
     case DELETE_MICROSTEP:
       microstepsUpdated = microsteps.slice();
       index = microstepsUpdated.findIndex((step) => step.id == action.id)
       microstepsUpdated.splice(index, 1);
+      // how do i trigger updated completion states on a parent?
       return reindex(microstepsUpdated);
 
     default:

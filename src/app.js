@@ -27,6 +27,7 @@ import Loader from "./ui/Loader";
 import Drawer from "./ui/Drawer";
 import Footer from "./ui/Footer";
 import AppFrame from "./ui/AppFrame";
+import NotificationBar from "./ui/NotificationBar";
 
 // route root components
 import MicroSteps from "./microsteps/MicroSteps";
@@ -87,6 +88,7 @@ const ReduxApp = () => {
             />
             <Route path="/card/:id" component={CardDetail} />
             <Footer />
+            <NotificationBar />
           </AppFrame>
         </ConnectedRouter>
       </Provider>

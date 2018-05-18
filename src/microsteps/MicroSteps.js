@@ -28,8 +28,8 @@ const ConnectedToDoList = props => {
       <StyledProgrssBar>
         <ProgressBar />
       </StyledProgrssBar>
-      {props.microsteps.map(todo => {
-        return <MicroStep {...todo} />;
+      {props.microsteps.map(step => {
+        return <MicroStep {...step} key={step.id} />;
       })}
     </StyledTodo>
   );
