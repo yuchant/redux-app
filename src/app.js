@@ -36,6 +36,10 @@ import Journeys from "./journeys/Journeys";
 import JourneysConfigure from "./journeys/Configure";
 import CardDetail from "./cards/CardDetail";
 
+// fastclick - remove double tap detect 300ms delay
+import initReactFastclick from "react-fastclick";
+initReactFastclick();
+
 const loggerMiddleware = createLogger({
   duration: true,
   timestamp: true

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { openNavbar } from "./uiActions";
+import { Link } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -40,7 +41,7 @@ const styles = {
     color: "white",
     fontSize: 20,
     letterSpacing: ".05em",
-    // fontWeight: "500",
+    textDecoration: "none",
     position: "absolute",
     left: "50%",
     transform: "translateX(-50%)"
@@ -66,8 +67,14 @@ const Navbar = props => {
           >
             <MenuIcon className={classes.menuIcon} />
           </IconButton>
-          <Typography variant="title" color="inherit" className={classes.title}>
-            THRIVE APP
+          <Typography
+            variant="title"
+            color="inherit"
+            className={classes.title}
+            component={Link}
+            to="/"
+          >
+            THE APP
           </Typography>
           <IconButton color="inherit" aria-label="Account">
             <AccountIcon className={classes.menuIcon} />

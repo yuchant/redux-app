@@ -28,7 +28,8 @@ const mapStateToProps = (state, ownProps) => {
 const StyledJourneys = styled.div``;
 
 const StyledHeader = styled.div`
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   text-align: center;
 `;
 
@@ -40,6 +41,10 @@ const styles = {
   configureLink: {
     textDecoration: "underline",
     color: "inherit"
+  },
+  editIcon: {
+    fontSize: 13,
+    height: 10
   }
 };
 
@@ -80,6 +85,7 @@ class Journeys extends React.Component {
                       return topic.name;
                     })
                     .join(", ")}
+                  &nbsp; <EditIcon className={classes.editIcon} />
                 </Link>
               </Typography>
             </StyledHeader>

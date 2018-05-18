@@ -6,7 +6,6 @@ import {
   completeMicroStep,
   deleteMicroStep
 } from "./microstepActions";
-
 import { withStyles } from "@material-ui/core/styles";
 import ActionFavorite from "@material-ui/icons/Favorite";
 import ActionFavoriteBorder from "@material-ui/icons/FavoriteBorder";
@@ -48,9 +47,10 @@ const mapStateToProps = (state, ownProps) => {
   // ugly. should probably not pass any props but an ID to this child, then let component pull from redux.
   // we are unwittingly holding state in react through props passed from parent>child.
   return {
-    complete: state.microsteps.items.find((step) => step.id == ownProps.id).complete
-  }
-}
+    complete: state.microsteps.items.find(step => step.id == ownProps.id)
+      .complete
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -97,7 +97,6 @@ const styles = theme => ({
     display: "block"
   }
 });
-
 
 class MicroStep extends React.Component {
   state = {
@@ -169,4 +168,6 @@ class MicroStep extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MicroStep));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(MicroStep)
+);

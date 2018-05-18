@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => {
 
 // this is an overlay
 const StyledConfigure = styled.div`
-  padding: 0 20px; // force text wrap
+  padding: 20px 20px 0 20px; // force text wrap
 `;
 
 const Center = styled.div`
@@ -39,7 +39,7 @@ const Center = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 137px);
+  min-height: calc(100vh - 250px);
 `;
 
 const StyledChips = styled.div`

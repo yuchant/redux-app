@@ -12,9 +12,9 @@ import ArticleMicroSteps from "./ArticleMicroSteps";
 const log = console.log.bind(this, "[CardDetail.js]");
 
 const mapStateToProps = (state, ownProps) => {
-  log("Match state to props", state, ownProps);
+  const articleByID = state.articlesByID[ownProps.match.params.id];
   return {
-    article: state.cardsByID[ownProps.match.params.id],
+    article: articleByID,
     isFetching: state.isFetching
   };
 };
@@ -36,6 +36,9 @@ const StyledArticle = styled.article`
   }
   a {
     color: ${cyan[900]};
+  }
+  img {
+    max-width: 100%;
   }
 `;
 
@@ -107,7 +110,7 @@ class CardWithData extends React.Component {
           </StyledTitle>
           <StyledSubtitle>{article.subtitle}</StyledSubtitle>
           <StyledMicroSteps>
-            This article contains 3 Micro Steps.
+            This article contains {article.microSteps.length} Micro Steps.
           </StyledMicroSteps>
         </StyledHeader>
         <div>

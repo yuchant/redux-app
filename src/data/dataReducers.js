@@ -11,13 +11,21 @@ import { scrapeArticles, scrapeArticle } from "./htmlscraper";
 import { addMicroStepsToArticle } from "./fakeData";
 const log = console.log.bind(this, "[dataReducers.js]");
 
+const shuffleArray = array => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+  }
+};
+
 const reducer = (
   state = {
     isFetching: false,
     isFetchingReason: null,
     cards: [],
     cardsByID: {},
-    articlesByCategory: {}
+    articlesByCategory: {},
+    articlesByID: {}
   },
   action
 ) => {
@@ -56,7 +64,7 @@ const reducer = (
       return Object.assign({}, state, {
         isFetching: false,
         isFetchingReason: null,
-        cardsByID: Object.assign({}, state.cardsByID, {
+        articlesByID: Object.assign({}, state.articlesByID, {
           [action.id]: article
         })
       });
@@ -69,7 +77,9 @@ const reducer = (
         });
         return articles;
       });
+
       const allArticles = [].concat.apply([], allArticlesByCategory);
+      shuffleArray(allArticles);
 
       let articleCards = allArticles.map(article => ({
         type: "Basic",
@@ -89,7 +99,6 @@ const reducer = (
         })
       });
     default:
-
       return state;
   }
 };

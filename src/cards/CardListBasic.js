@@ -23,11 +23,22 @@ const styles = {
     padding: "0 20px",
     lineHeight: 1.4
   },
-  img: {
-    width: "100%"
-  },
+
   media: {
     marginBottom: 20
+  },
+  mediaAspect: {
+    paddingBottom: "66%",
+    overflow: "hidden",
+    position: "relative"
+  },
+  img: {
+    position: "absolute",
+    width: "100%",
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0
   }
 };
 
@@ -38,7 +49,9 @@ const Basic = props => {
     <Card className={classes.card}>
       <Link to={url} style={{ textDecoration: "none" }}>
         <CardMedia className={classes.media}>
-          <img className={classes.img} src={props.image.url} alt="" />
+          <div className={classes.mediaAspect}>
+            <img className={classes.img} src={props.image.url} alt="" />
+          </div>
         </CardMedia>
         <StyledCategory>{props.category}</StyledCategory>
         <Typography className={classes.title} component="h2">
