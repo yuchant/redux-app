@@ -39,6 +39,14 @@ const motivationTexts = [
   "You can do this!"
 ];
 
+const doneTexts = [
+  "All done!",
+  "You did it!",
+  "You're thriving!",
+  "Whew!",
+  "Done!"
+];
+
 const getMessage = props => {
   // lets use some fun messaging variations
   // high bang for buck before animations
@@ -46,7 +54,7 @@ const getMessage = props => {
     case 0:
       return `It's a new day. ${getRandom(motivationTexts)}`;
     case props.totalCount:
-      return "All done!";
+      return getRandom(doneTexts);
     default:
       return `You've completed ${props.completedCount}/${
         props.totalCount

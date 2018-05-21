@@ -18,10 +18,14 @@ const CardWrapper = styled.div`
   }
 `;
 
+const StyledCardList = styled.div`
+  padding-bottom: 50px;
+`;
+
 export const CardList = props => {
   console.log("CardList Unconnected", props);
   return (
-    <div>
+    <StyledCardList>
       {props.cards
         ? props.cards.map(card => {
             const Component = getComponent(card.type);
@@ -32,7 +36,7 @@ export const CardList = props => {
             );
           })
         : null}
-    </div>
+    </StyledCardList>
   );
 };
 

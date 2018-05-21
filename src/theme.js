@@ -9,7 +9,8 @@ const theme = createMuiTheme({
     fontFamily: "Open Sans, sans-serif",
     display1: {
       fontFamily: "Playfair Display",
-      color: "black"
+      color: "black",
+      fontSize: 28
     },
     display2: {
       fontFamily: "Playfair Display"

@@ -15,30 +15,27 @@ export const closeNavbar = open => {
   };
 };
 
-
 export const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
 
-export const showNotification = (message) => {
-	return {
-		type: SHOW_NOTIFICATION,
-		message: message
-	}
-}
+export const showNotification = message => {
+  return {
+    type: SHOW_NOTIFICATION,
+    message: message
+  };
+};
 
 export const HIDE_NOTIFICATION = "HIDE_NOTIFICATION";
 
-export const hideNotification = (message) => {
-	return {
-		type: HIDE_NOTIFICATION
-	}
-}
+export const hideNotification = message => {
+  return {
+    type: HIDE_NOTIFICATION
+  };
+};
 
-
-export const flashNotification = (message, duration=1200) => (dispatch) => {
-	// show notification then hide it a little later
-	console.log("FLASHING NOTIFICATION", message, duration)
-	dispatch(showNotification(message));
-	setTimeout(() => {
-		dispatch(hideNotification());
-	}, duration)
-}
+export const flashNotification = (message, duration = 1200) => dispatch => {
+  // show notification then hide it a little later
+  dispatch(showNotification(message));
+  setTimeout(() => {
+    dispatch(hideNotification());
+  }, duration);
+};

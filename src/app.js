@@ -35,6 +35,7 @@ import Home from "./cards/Home";
 import Journeys from "./journeys/Journeys";
 import JourneysConfigure from "./journeys/Configure";
 import CardDetail from "./cards/CardDetail";
+import Progress from "./progress/Progress";
 
 // fastclick - remove double tap detect 300ms delay
 import initReactFastclick from "react-fastclick";
@@ -85,6 +86,7 @@ const ReduxApp = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/micro-steps" component={MicroSteps} />
             <Route exact path="/journeys" component={Journeys} />
+            <Route exact path="/progress" component={Progress} />
             <Route
               exact
               path="/journeys/configure"

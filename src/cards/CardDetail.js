@@ -9,6 +9,8 @@ import StyledCategory from "../common/StyledCategory";
 import Divider from "@material-ui/core/Divider";
 import ArticleMicroSteps from "./ArticleMicroSteps";
 
+import * as Scroll from "react-scroll";
+
 const log = console.log.bind(this, "[CardDetail.js]");
 
 const mapStateToProps = (state, ownProps) => {
@@ -30,9 +32,10 @@ const mapDispatchToProps = dispatch => {
 
 const StyledArticle = styled.article`
   padding-top: 20px;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   p {
     line-height: 1.4;
+    font-size: 15px;
   }
   a {
     color: ${cyan[900]};
@@ -69,7 +72,6 @@ const StyledSubtitle = styled.div`
 
 const StyledBody = styled.div`
   padding: 0 10px;
-  font-size: 16px;
 `;
 
 const StyledMicroSteps = styled.div`
@@ -109,8 +111,11 @@ class CardWithData extends React.Component {
             {article.title}
           </StyledTitle>
           <StyledSubtitle>{article.subtitle}</StyledSubtitle>
-          <StyledMicroSteps>
-            This article contains {article.microSteps.length} Micro Steps.
+          <StyledMicroSteps onClick={Scroll.animateScroll.scrollToBottom}>
+            This article contains{" "}
+            <u style={{ cursor: "pointer" }}>
+              {article.microSteps.length} Micro Steps.
+            </u>
           </StyledMicroSteps>
         </StyledHeader>
         <div>

@@ -13,6 +13,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import * as icons from "@material-ui/icons";
+import { cyan } from "@material-ui/core/colors";
 
 const mapStateToProps = state => {
   return {

@@ -31,7 +31,7 @@ const StyledReason = styled.div`
   max-width: 300px;
   margin: 0 auto;
   font-family: "Playfair Display";
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 const Center = styled.div`

@@ -27,9 +27,14 @@ const navigationItems = [
     icon: <icons.ChromeReaderMode />
   },
   {
-    label: "Micro Steps",
+    label: "Steps",
     to: "/micro-steps",
     icon: <icons.Favorite />
+  },
+  {
+    label: "Progress",
+    to: "/progress",
+    icon: <icons.GraphicEq />
   }
 ];
 

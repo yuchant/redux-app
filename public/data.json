@@ -103,6 +103,18 @@
       {
         "name": "Beating Burnout",
         "selected": false
+      },
+      {
+        "name": "Wellbeing and Social Change",
+        "selected": false
+      },
+      {
+        "name": "Time Well Spent",
+        "selected": false
+      },
+      {
+        "name": "Well Yes You Can",
+        "selected": false
       }
     ]
   }

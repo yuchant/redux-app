@@ -51,8 +51,7 @@ const styles = {
 class Journeys extends React.Component {
   componentWillMount() {
     if (this.props.hasConfigured && !this.props.isFetching) {
-      this.props.myTopics;
-      const limit = 4;
+      const limit = 5;
       const articleNames = this.props.myTopics.map(topic => topic.name);
       store.dispatch(getArticles(articleNames, limit));
     }
