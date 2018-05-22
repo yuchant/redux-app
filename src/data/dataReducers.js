@@ -9,6 +9,8 @@ import {
 } from "./dataActions";
 import { scrapeArticles, scrapeArticle } from "./htmlscraper";
 import { addMicroStepsToArticle } from "./fakeData";
+import { loader } from "../ui/uiReducers";
+
 const log = console.log.bind(this, "[dataReducers.js]");
 
 const shuffleArray = array => {
@@ -20,8 +22,6 @@ const shuffleArray = array => {
 
 const reducer = (
   state = {
-    isFetching: false,
-    isFetchingReason: null,
     cards: [],
     cardsByID: {},
     articlesByCategory: {},
@@ -32,13 +32,12 @@ const reducer = (
   switch (action.type) {
     case REQUEST_DATA:
       return Object.assign({}, state, {
-        isFetching: true,
-        isFetchingReason: action.reason
+        ui: Object.assign({}, state.ui, loader(true, action.reason)),
       });
+
     case RECEIVE_DATA:
       let results = Object.assign({}, state, {
-        isFetching: false,
-        isFetchingReason: null,
+        ui: Object.assign({}, state.ui, loader(false, action.reason)),
         receivedAt: action.receivedAt,
         receivedData: true,
         ...action.data,
@@ -47,11 +46,11 @@ const reducer = (
         })
       });
       return results;
+
     case RECEIVE_ARTICLES:
       let scraped = scrapeArticles(action.html, action.limit);
       return Object.assign({}, state, {
-        isFetching: false,
-        isFetchingReason: null,
+        ui: Object.assign({}, state.ui, loader(false, null)),
         articlesByCategory: {
           ...state.articlesByCategory,
           [action.category]: scraped
@@ -62,8 +61,7 @@ const reducer = (
       article.id = action.id;
       addMicroStepsToArticle(article);
       return Object.assign({}, state, {
-        isFetching: false,
-        isFetchingReason: null,
+        ui: Object.assign({}, state.ui, loader(false, null)),
         articlesByID: Object.assign({}, state.articlesByID, {
           [action.id]: article
         })

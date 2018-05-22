@@ -7,6 +7,7 @@ import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // theme
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -36,9 +37,19 @@ import Journeys from "./journeys/Journeys";
 import JourneysConfigure from "./journeys/Configure";
 import CardDetail from "./cards/CardDetail";
 import Progress from "./progress/Progress";
+import Account from "./auth/Account";
 
 // fastclick - remove double tap detect 300ms delay
 import initReactFastclick from "react-fastclick";
+
+// aws
+import Amplify from "aws-amplify";
+import aws_exports from "./aws-exports-manual";
+import { Authenticator } from 'aws-amplify-react';
+
+Amplify.configure(aws_exports);
+
+
 initReactFastclick();
 
 const loggerMiddleware = createLogger({
@@ -59,10 +70,12 @@ const routerReduxMiddleware = routerMiddleware(history);
 
 export const store = createStore(
   reducers,
-  applyMiddleware(
-    thunkMiddleware, // lets us dispatch() functions
-    routerReduxMiddleware
-    // loggerMiddleware
+  composeWithDevTools(
+    applyMiddleware(
+      thunkMiddleware, // lets us dispatch() functions
+      routerReduxMiddleware
+      // loggerMiddleware
+    ),
   )
 );
 
@@ -80,9 +93,11 @@ const ReduxApp = () => {
           onUpdate={() => window.scrollTo(0, 0)}
         >
           <AppFrame>
-            <Drawer />
             <Loader />
+            <Drawer />
             <Navbar />
+            <Route exact path="/account" component={Account} />
+            <Route exact path="/auth" component={Authenticator} />
             <Route exact path="/" component={Home} />
             <Route exact path="/micro-steps" component={MicroSteps} />
             <Route exact path="/journeys" component={Journeys} />

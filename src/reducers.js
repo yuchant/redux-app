@@ -6,6 +6,8 @@ import microsteps from "./microsteps/microstepReducers";
 import cards from "./cards/cardsReducers";
 import ui from "./ui/uiReducers";
 import journeys from "./journeys/journeysReducers";
+import forms from "./forms/reducers";
+import auth from "./auth/reducers";
 
 const log = console.log.bind(this, "[reducers.js]");
 
@@ -17,7 +19,9 @@ const combinedReducers = (state = {}, action) => {
     cards: cards(state.cards, action),
     ui: ui(state.ui, action),
     journeys: journeys(state.journeys, action),
-    router: routerReducer
+    forms: forms(state.forms, action),
+    auth: auth(state.auth, action),
+    router: routerReducer,
   });
 };
 

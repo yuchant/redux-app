@@ -7,7 +7,7 @@ const StyledFrame = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   font-family: "Montserrat", sans-serif;
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
 `;
 

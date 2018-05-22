@@ -1,5 +1,6 @@
 import fetch from "cross-fetch";
 import getProxyUrl from "./proxy";
+import { showLoader, hideLoader } from "../ui/uiActions";
 
 export const REQUEST_DATA = "REQUEST_DATA";
 export const requestData = reason => {

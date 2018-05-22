@@ -76,7 +76,11 @@ const Navbar = props => {
           >
             THE APP
           </Typography>
-          <IconButton color="inherit" aria-label="Account">
+          <IconButton
+            color="inherit"
+            aria-label="Account"
+            component={Link}
+            to="/account">
             <AccountIcon className={classes.menuIcon} />
           </IconButton>
         </Toolbar>

@@ -8,8 +8,8 @@ import cyan from "@material-ui/core/colors/cyan";
 
 const mapStateToProps = state => {
   return {
-    loading: state.isFetching,
-    reason: state.isFetchingReason
+    loading: state.ui.isLoading,
+    reason: state.ui.isLoadingMessage
   };
 };
 
